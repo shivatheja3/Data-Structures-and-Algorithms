@@ -24,7 +24,6 @@ class Solution(object):
                     t1[i]=1
                 else:
                     t1[i]=0
-                    
             carry=1
             for i in range(32):
                 x=carry+t1[i]
@@ -36,8 +35,6 @@ class Solution(object):
                 else:
                     carry=1
                     t1[i]=0
-                    
-        
         if b<0:
             for i in range(32):
                 if t2[i]==0:
@@ -57,25 +54,23 @@ class Solution(object):
                     t2[i]=0
         carry=0
         res1=0
-        res=[0]*32
+        temp=0
         print(t1,t2)
-        for i in range(32):
+        for i in range(31):
             x=carry+t1[i]+t2[i]
             if x==2:
-                res[i]=0
+                temp=0
                 carry=1
             elif x==1:
-                res[i]=1
+                temp=1
                 carry=0
-                # res1+=1<<(i)
+                res1+=1<<(i)
             elif x==0:
-                res[i]=0
+                temp=0
                 carry=0
             else:
-                res[i]=1
+                temp=1
                 carry=1
-                # res1+=1<<(i)
-        for i in range(31):
-            res1=res1+2**(i)*res[i]
-        res1=res1-2**(31)*res[i]
+                res1+=1<<(i)
+        res1=res1-2**(31)*temp
         return res1
