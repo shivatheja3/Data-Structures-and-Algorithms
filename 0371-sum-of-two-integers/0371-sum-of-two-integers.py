@@ -64,13 +64,13 @@ class Solution(object):
             elif x==1:
                 temp=1
                 carry=0
-                res1+=1<<(i)
+                res1|=1<<(i)
             elif x==0:
                 temp=0
                 carry=0
             else:
                 temp=1
                 carry=1
-                res1+=1<<(i)
+                res1|=1<<(i)
         res1=res1-2**(31)*temp
         return res1
