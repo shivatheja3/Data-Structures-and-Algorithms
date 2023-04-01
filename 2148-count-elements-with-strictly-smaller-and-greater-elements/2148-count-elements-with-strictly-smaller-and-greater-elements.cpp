@@ -1,43 +1,18 @@
 class Solution {
 public:
     int countElements(vector<int>& nums) {
-        int ans=0;
-        sort(nums.begin(),nums.end());
-        for(int i=1;i<(nums.size()-1);++i){
-            int f=-100001,c=-100001;
-            int l=0;
-            int r=nums.size()-1;
-            int m=(l+r)/2;
-            int target(nums[i]-1);
-            while(l<=r){
-                m=(l+r)/2;
-                if(nums[m]<=target){
-                    f=nums[m];
-                    l=m+1;
-                }
-                else{
-                    r=m-1;
-                }
-            }
-            l=0;
-            r=nums.size()-1;
-            m=(l+r)/2;
-            target=nums[i]+1;
-            while(l<=r){
-                m=(l+r)/2;
-                if(nums[m]>=target){
-                    c=nums[m];
-                    r=m-1;
-                }
-                else{
-                    l=m+1;
-                }
-            }
-            cout<<c<<" "<<f<<endl;
-            if(c!=-100001&&f!=-100001){
-                ++ans;
-            }
+        // cout<<count(*max_element(nums.begin(),nums.end()))<<endl;
+        int m1=*max_element(nums.begin(),nums.end());
+        int m2=*min_element(nums.begin(),nums.end());
+        if(m1==m2)
+            return 0;
+        int c1=0,c2=0;
+        for(int i=0;i<nums.size();++i){
+            if(nums[i]==m1)
+                ++c1;
+            if(nums[i]==m2)
+                ++c2;
         }
-        return ans;
+        return nums.size()-c1-c2;
     }
 };
