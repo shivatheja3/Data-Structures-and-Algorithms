@@ -2,31 +2,30 @@ class Solution {
 public:
     int rotatedDigits(int n) {
         int res=0;
-        for(int i=1;i<=n;++i){
-            int x=i;
-            int c1=0;
-            int c2=0;
-            int c3=0;
-            int c=0;
-            int ch=1;
-            while(x!=0){
-                if(x%10==0||x%10==1||x%10==8){
-                    ++c1;
-                }
-                else if(x%10==2||x%10==5||x%10==6||x%10==9){
-                    ++c2;
-                }
-                else if(x%10==4||x%10==7||x%10==3){
-                    ++c3;
-                }
-                ++c;
-                x/=10;
+        vector<int> dp(n+1,0);
+        for(int i=1;i<=n&&i<=9;++i){
+            if(i%10==2||i%10==5||i%10==6||i%10==9){
+                dp[i]=1;
+                ++res;
             }
-            if(c==c1||c3>=1){
-                // ch=0;
-                // break;
+            else if(i%10==3||i%10==4||i%10==7){
+                dp[i]=-100;
             }
-            else{
+        }
+        for(int i=10;i<=n;++i){
+            if(dp[i/10]<0){
+                dp[i]=-100;
+                continue;
+            }
+            if(i%10==2||i%10==5||i%10==6||i%10==9){
+                dp[i]=1;
+            }
+            else if(i%10==3||i%10==7||i%10==4){
+                // continue;
+                dp[i]=-100;
+            }
+            dp[i]+=dp[i/10];
+            if(dp[i]>0){
                 ++res;
             }
         }
