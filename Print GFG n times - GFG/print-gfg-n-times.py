@@ -1,10 +1,13 @@
 #User function Template for python3
 
 class Solution:
+    def func(self,n):
+        if n==0:
+            return
+        print("GFG",end=" ")
+        self.func(n-1)
     def printGfg(self, n):
-        # Code here
-        for i in range(n):
-            print("GFG",end=" ")
+        self.func(n)
 
 
 #{ 
