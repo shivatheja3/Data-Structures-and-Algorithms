@@ -17,13 +17,13 @@ public:
     //     findCombination(ind+1,t,res,r,a);
     // }
     void findCombination(int ind,int target,vector<vector<int>> &res,vector<int> &r,vector<int> &a){
-        if(target<0) return;
+        // if(target<0) return;
         if(target==0){
             res.push_back(r);
             return;
         }
         for(int i=ind;i<a.size();++i){
-            if(a[i]>target) break;
+            if(a[i]>target) return;
             r.push_back(a[i]);
             findCombination(i,target-a[i],res,r,a);
             r.pop_back();
